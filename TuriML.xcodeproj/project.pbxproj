@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DA24DAB42157977E006E3FE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DAB32157977E006E3FE0 /* AppDelegate.swift */; };
-		DA24DABB21579780006E3FE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA24DABA21579780006E3FE0 /* Assets.xcassets */; };
 		DA24DAC921579780006E3FE0 /* TuriMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DAC821579780006E3FE0 /* TuriMLTests.swift */; };
 		DA24DAD421579780006E3FE0 /* TuriMLUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DAD321579780006E3FE0 /* TuriMLUITests.swift */; };
 		DA24DAE2215797A4006E3FE0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DAE1215797A3006E3FE0 /* Config.swift */; };
@@ -17,9 +16,6 @@
 		DA24DAF0215797C7006E3FE0 /* ImageAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DAE9215797C7006E3FE0 /* ImageAnalyzer.swift */; };
 		DA24DAF1215797C7006E3FE0 /* ObjectDetectionVisionAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DAEA215797C7006E3FE0 /* ObjectDetectionVisionAnalyzer.swift */; };
 		DA24DAF2215797C7006E3FE0 /* DetectionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DAEC215797C7006E3FE0 /* DetectionResult.swift */; };
-		DA24DAFA215797E1006E3FE0 /* CVPixelBuffer+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DAF6215797E1006E3FE0 /* CVPixelBuffer+Resize.swift */; };
-		DA24DAFB215797E1006E3FE0 /* AppLogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DAF8215797E1006E3FE0 /* AppLogModel.swift */; };
-		DA24DAFC215797E1006E3FE0 /* LogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DAF9215797E1006E3FE0 /* LogWrapper.swift */; };
 		DA24DB08215797EF006E3FE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DAFF215797EE006E3FE0 /* ViewController.swift */; };
 		DA24DB09215797EF006E3FE0 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DB00215797EE006E3FE0 /* ResultView.swift */; };
 		DA24DB0A215797EF006E3FE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA24DB01215797EE006E3FE0 /* Assets.xcassets */; };
@@ -49,7 +45,6 @@
 /* Begin PBXFileReference section */
 		DA24DAB02157977E006E3FE0 /* TuriML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuriML.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA24DAB32157977E006E3FE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DA24DABA21579780006E3FE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA24DABF21579780006E3FE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA24DAC421579780006E3FE0 /* TuriMLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuriMLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA24DAC821579780006E3FE0 /* TuriMLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuriMLTests.swift; sourceTree = "<group>"; };
@@ -63,9 +58,6 @@
 		DA24DAE9215797C7006E3FE0 /* ImageAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAnalyzer.swift; sourceTree = "<group>"; };
 		DA24DAEA215797C7006E3FE0 /* ObjectDetectionVisionAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDetectionVisionAnalyzer.swift; sourceTree = "<group>"; };
 		DA24DAEC215797C7006E3FE0 /* DetectionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectionResult.swift; sourceTree = "<group>"; };
-		DA24DAF6215797E1006E3FE0 /* CVPixelBuffer+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Resize.swift"; sourceTree = "<group>"; };
-		DA24DAF8215797E1006E3FE0 /* AppLogModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLogModel.swift; sourceTree = "<group>"; };
-		DA24DAF9215797E1006E3FE0 /* LogWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogWrapper.swift; sourceTree = "<group>"; };
 		DA24DAFF215797EE006E3FE0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DA24DB00215797EE006E3FE0 /* ResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		DA24DB01215797EE006E3FE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,11 +116,9 @@
 			isa = PBXGroup;
 			children = (
 				DA24DAE1215797A3006E3FE0 /* Config.swift */,
-				DA24DAE5215797C7006E3FE0 /* Logic Layer */,
-				DA24DAF5215797E1006E3FE0 /* App Infrastructure Layer */,
+				DA24DAE5215797C7006E3FE0 /* App Infrastructure */,
 				DA24DAFD215797EE006E3FE0 /* View Layer */,
 				DA24DAB32157977E006E3FE0 /* AppDelegate.swift */,
-				DA24DABA21579780006E3FE0 /* Assets.xcassets */,
 				DA24DAE3215797B5006E3FE0 /* MyModel.mlmodel */,
 				DA24DABF21579780006E3FE0 /* Info.plist */,
 			);
@@ -153,13 +143,13 @@
 			path = TuriMLUITests;
 			sourceTree = "<group>";
 		};
-		DA24DAE5215797C7006E3FE0 /* Logic Layer */ = {
+		DA24DAE5215797C7006E3FE0 /* App Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
 				DA24DAE6215797C7006E3FE0 /* ResultIndicator */,
 				DA24DAE8215797C7006E3FE0 /* Analyzer */,
 			);
-			path = "Logic Layer";
+			path = "App Infrastructure";
 			sourceTree = "<group>";
 		};
 		DA24DAE6215797C7006E3FE0 /* ResultIndicator */ = {
@@ -188,33 +178,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		DA24DAF5215797E1006E3FE0 /* App Infrastructure Layer */ = {
-			isa = PBXGroup;
-			children = (
-				DA24DAF6215797E1006E3FE0 /* CVPixelBuffer+Resize.swift */,
-				DA24DAF7215797E1006E3FE0 /* Logging */,
-			);
-			path = "App Infrastructure Layer";
-			sourceTree = "<group>";
-		};
-		DA24DAF7215797E1006E3FE0 /* Logging */ = {
-			isa = PBXGroup;
-			children = (
-				DA24DAF8215797E1006E3FE0 /* AppLogModel.swift */,
-				DA24DAF9215797E1006E3FE0 /* LogWrapper.swift */,
-			);
-			path = Logging;
-			sourceTree = "<group>";
-		};
 		DA24DAFD215797EE006E3FE0 /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
 				DA24DAFE215797EE006E3FE0 /* CameraView */,
-				DA24DB01215797EE006E3FE0 /* Assets.xcassets */,
 				DA24DB06215797EE006E3FE0 /* UIView+BlurEffect.swift */,
+				DA24DB07215797EE006E3FE0 /* CameraSession.swift */,
+				DA24DB01215797EE006E3FE0 /* Assets.xcassets */,
 				DA24DB10215798AF006E3FE0 /* LaunchScreen.storyboard */,
 				DA24DB0F215798AF006E3FE0 /* Main.storyboard */,
-				DA24DB07215797EE006E3FE0 /* CameraSession.swift */,
 			);
 			path = "View Layer";
 			sourceTree = "<group>";
@@ -334,7 +306,6 @@
 			files = (
 				DA24DB11215798AF006E3FE0 /* Main.storyboard in Resources */,
 				DA24DB12215798AF006E3FE0 /* LaunchScreen.storyboard in Resources */,
-				DA24DABB21579780006E3FE0 /* Assets.xcassets in Resources */,
 				DA24DB0A215797EF006E3FE0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,16 +332,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA24DB0E215797EF006E3FE0 /* CameraSession.swift in Sources */,
-				DA24DAFB215797E1006E3FE0 /* AppLogModel.swift in Sources */,
 				DA24DAF1215797C7006E3FE0 /* ObjectDetectionVisionAnalyzer.swift in Sources */,
 				DA24DB09215797EF006E3FE0 /* ResultView.swift in Sources */,
-				DA24DAFA215797E1006E3FE0 /* CVPixelBuffer+Resize.swift in Sources */,
 				DA24DB08215797EF006E3FE0 /* ViewController.swift in Sources */,
 				DA24DAF0215797C7006E3FE0 /* ImageAnalyzer.swift in Sources */,
 				DA24DB0D215797EF006E3FE0 /* UIView+BlurEffect.swift in Sources */,
 				DA24DAB42157977E006E3FE0 /* AppDelegate.swift in Sources */,
 				DA24DAE2215797A4006E3FE0 /* Config.swift in Sources */,
-				DA24DAFC215797E1006E3FE0 /* LogWrapper.swift in Sources */,
 				DA24DAEF215797C7006E3FE0 /* KeywordResultIndicatorDatasource.swift in Sources */,
 				DA24DAE4215797B5006E3FE0 /* MyModel.mlmodel in Sources */,
 				DA24DAF2215797C7006E3FE0 /* DetectionResult.swift in Sources */,

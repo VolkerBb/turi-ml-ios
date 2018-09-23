@@ -19,7 +19,8 @@ struct Config {
     /// value from 0-1, which defines the minimum probability for a recognition result to be accepted
     static let minimumRecognitionConfidence: Float = 0.2
     static let resultDisplayMaxCount = 3
-    static let resultDisplayFreezeTime = 1.3
+    static let resultDisplayFreezeTime = 1.05
+    static let showBoundingBox = false
     
     static let keywords = ["Dragon", "Dog"]
     

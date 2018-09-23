@@ -12,5 +12,6 @@ struct DetectionResult {
 
     var name:String?
     var match:Float
+    var coordinates:CGRect
     
 }

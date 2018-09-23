@@ -13,13 +13,24 @@ enum ExecutionMode {
     case running, error
 }
 
-class ViewController: UIViewController, CameraSessionDelegate {
+class ViewController: UIViewController {
     
-    private var carAnalyzer: ImageAnalyzer?
+    private var analyzer: ImageAnalyzer?
     private lazy var resultIndicatorDataSource = KeywordResultIndicatorDatasource()
     
     @IBOutlet weak var previewContainer: UIView!
     @IBOutlet weak var resultView: ResultView!
+    var currentResults:[DetectionResult]? {
+        didSet {
+            drawLayer.setNeedsDisplay()
+            guard let results = currentResults else {
+                resultView.text = nil
+                return
+            }
+            resultView.text = string(fromResults: results)
+        }
+    }
+    var imageYOffset: CGFloat?
     
     private var mode = ExecutionMode.running
     private var lastDisplayTimestamp: TimeInterval = Date.distantPast.timeIntervalSinceReferenceDate
@@ -36,6 +47,14 @@ class ViewController: UIViewController, CameraSessionDelegate {
         return result
     }()
     
+    private lazy var drawLayer:CAShapeLayer = {
+        let result = CAShapeLayer()
+        result.frame = previewLayer.frame
+        result.delegate = self
+        result.setNeedsDisplay()
+        return result
+    }()
+    
     // MARK: - view lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -48,28 +67,22 @@ class ViewController: UIViewController, CameraSessionDelegate {
             return
         }
         previewLayer.frame = previewContainer.layer.bounds
+        drawLayer.frame = previewLayer.bounds
     }
     
     // MARK: -    
     private func prepareAnalysis() {
         do {
-            try carAnalyzer = Config.imageAnalyzer()
+            try analyzer = Config.imageAnalyzer()
             resultView.resultIndicatorDataSource = resultIndicatorDataSource
             cameraSession.startSession()
             previewContainer.layer.addSublayer(previewLayer)
+            previewContainer.layer.addSublayer(drawLayer)
         }
         catch (let error) {
             mode = .error
             resultView.text = error.localizedDescription
         }
-    }
-    
-    private func setResult(_ carResult: [DetectionResult]?) {
-        guard let results = carResult else {
-            resultView.text = nil
-            return
-        }
-        resultView.text = string(fromResults: results)
     }
     
     private func string(fromResults results: [DetectionResult]) -> String {
@@ -80,15 +93,31 @@ class ViewController: UIViewController, CameraSessionDelegate {
     }
     
     private func analyzeAndDisplayResult(pixelBuffer: CVPixelBuffer) {
-        carAnalyzer?.analyze(pixelBuffer: pixelBuffer, callback: { result in
+        guard let _ = imageYOffset else {
+            DispatchQueue.main.async {
+                self.lockOffset(pixelBuffer: pixelBuffer)
+            }
+            return
+        }
+        analyzer?.analyze(pixelBuffer: pixelBuffer, callback: { result in
             DispatchQueue.main.async {
                 self.lastDisplayTimestamp = Date().timeIntervalSinceReferenceDate
-                self.setResult(result)
+                self.currentResults = result
             }
         })
     }
     
-    // MARK: - CameraSessionDelegate
+    private func lockOffset(pixelBuffer: CVPixelBuffer) {
+        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+        let prHeight = self.previewContainer.bounds.height
+        let extent = ciImage.extent
+        let extRatio = extent.height / extent.width
+        self.imageYOffset = (prHeight / extRatio) / 2.0
+    }
+}
+
+extension ViewController: CameraSessionDelegate {
+    
     func capturingStarted() {
         previewLayer.connection?.videoOrientation = Config.videoOrientation
     }
@@ -109,3 +138,26 @@ class ViewController: UIViewController, CameraSessionDelegate {
     
 }
 
+extension ViewController: CALayerDelegate {
+    
+    func draw(_ layer: CALayer, in ctx: CGContext) {
+        guard Config.showBoundingBox else {
+            return
+        }
+        let bounds = layer.bounds
+        ctx.setStrokeColor(UIColor.green.cgColor)
+        ctx.setLineWidth(2)
+        currentResults?.forEach({ (result) in
+            let coords = result.coordinates
+            let dHeight = bounds.height * coords.height
+            let dY = (bounds.height * (1.0 - coords.origin.y) - dHeight) - (imageYOffset ?? 0.0)
+            let drawingRect = CGRect(x: bounds.width * coords.origin.x,
+                                     y: dY,
+                                     width: bounds.width * coords.width,
+                                     height: dHeight)
+            ctx.addRect(drawingRect)
+        })
+        ctx.strokePath()
+    }
+    
+}

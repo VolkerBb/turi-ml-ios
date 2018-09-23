@@ -8,6 +8,7 @@
 
 import UIKit
 import Vision
+import os.log
 
 class ObjectDetectionVisionAnalyzer : ImageAnalyzer {
     
@@ -33,16 +34,11 @@ class ObjectDetectionVisionAnalyzer : ImageAnalyzer {
     
     private func mlRequestCompletion(_ request: VNRequest, _ error: Error?, _ callback: @escaping ([DetectionResult]?) -> Void) {
         if let err = error {
-            self.logError(err)
+            os_log("Error analyzing pixel buffer: %@", err.localizedDescription)
             callback(nil)
             return
         }
         self.handleVNRequest(request, callback: callback)
-    }
-    
-    private func logError(_ error: Error) {
-        LogWrapper.debug("Error analyzing pixel buffer: %@",
-                         log: AppLogModel.commonLog, error.localizedDescription)
     }
 
     private func handleVNRequest(_ request: VNRequest, callback: @escaping ([DetectionResult]?) -> Void) {
@@ -57,7 +53,7 @@ class ObjectDetectionVisionAnalyzer : ImageAnalyzer {
         
         let maxPresentableResultCount = min(Config.resultDisplayMaxCount, qualityMatches.count)
         let result = qualityMatches.prefix(upTo: maxPresentableResultCount).map {
-            DetectionResult(name: $0.labels.first?.identifier, match: $0.confidence)
+            DetectionResult(name: $0.labels.first?.identifier, match: $0.confidence, coordinates: $0.boundingBox)
         }
         callback(result)
     }

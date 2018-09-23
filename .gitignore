@@ -1,0 +1,8 @@
+xcshareddata
+xcuserdata
+.DS_Store
+docset/
+lib/
+Pods
+*.xcworkspace
+Podfile.lock

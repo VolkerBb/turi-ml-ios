@@ -20,11 +20,11 @@ class ObjectDetectionVisionAnalyzer : ImageAnalyzer {
     }
     
     func analyze(pixelBuffer: CVPixelBuffer, callback: @escaping ([DetectionResult]?) -> Void) {
-        let request = VNCoreMLRequest(model: model,
-                                      completionHandler: { self.mlRequestCompletion($0, $1, callback) })
-        
-        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
+        let request = VNCoreMLRequest(model: model) {
+            self.mlRequestCompletion($0, $1, callback)
+        }
         do {
+            let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
             try handler.perform([request])
         }
         catch {
@@ -32,13 +32,14 @@ class ObjectDetectionVisionAnalyzer : ImageAnalyzer {
         }
     }
     
-    private func mlRequestCompletion(_ request: VNRequest, _ error: Error?, _ callback: @escaping ([DetectionResult]?) -> Void) {
+    private func mlRequestCompletion(_ request: VNRequest, _ error: Error?,
+                                     _ callback: @escaping ([DetectionResult]?) -> Void) {
         if let err = error {
             os_log("Error analyzing pixel buffer: %@", err.localizedDescription)
             callback(nil)
             return
         }
-        self.handleVNRequest(request, callback: callback)
+        handleVNRequest(request, callback: callback)
     }
 
     private func handleVNRequest(_ request: VNRequest, callback: @escaping ([DetectionResult]?) -> Void) {
@@ -46,7 +47,6 @@ class ObjectDetectionVisionAnalyzer : ImageAnalyzer {
         let observations = request.results as? [VNRecognizedObjectObservation]
         guard let qualityMatches = observations?.filter({ $0.confidence > Config.minimumRecognitionConfidence }),
             qualityMatches.count > 0 else {
-                
             callback(nil)
             return
         }
@@ -57,6 +57,5 @@ class ObjectDetectionVisionAnalyzer : ImageAnalyzer {
         }
         callback(result)
     }
-    
     
 }

@@ -23,6 +23,10 @@
 		DA24DB0E215797EF006E3FE0 /* CameraSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24DB07215797EE006E3FE0 /* CameraSession.swift */; };
 		DA24DB11215798AF006E3FE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA24DB0F215798AF006E3FE0 /* Main.storyboard */; };
 		DA24DB12215798AF006E3FE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA24DB10215798AF006E3FE0 /* LaunchScreen.storyboard */; };
+		DAF7FC88215A94EF0018116C /* ViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF7FC87215A94EF0018116C /* ViewController+UITableView.swift */; };
+		DAF7FC8A215A95590018116C /* UITableViewCell+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF7FC89215A95590018116C /* UITableViewCell+Dequeue.swift */; };
+		DAF7FC8E215A95AA0018116C /* DetectedObjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF7FC8D215A95AA0018116C /* DetectedObjectTableViewCell.swift */; };
+		DAF7FC92215A9A490018116C /* ModelLabelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF7FC91215A9A490018116C /* ModelLabelWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,10 @@
 		DA24DB07215797EE006E3FE0 /* CameraSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraSession.swift; sourceTree = "<group>"; };
 		DA24DB0F215798AF006E3FE0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DA24DB10215798AF006E3FE0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DAF7FC87215A94EF0018116C /* ViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UITableView.swift"; sourceTree = "<group>"; };
+		DAF7FC89215A95590018116C /* UITableViewCell+Dequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Dequeue.swift"; sourceTree = "<group>"; };
+		DAF7FC8D215A95AA0018116C /* DetectedObjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectedObjectTableViewCell.swift; sourceTree = "<group>"; };
+		DAF7FC91215A9A490018116C /* ModelLabelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLabelWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +189,7 @@
 		DA24DAFD215797EE006E3FE0 /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
+				DAF7FC8B215A955F0018116C /* Extensions */,
 				DA24DAFE215797EE006E3FE0 /* CameraView */,
 				DA24DB06215797EE006E3FE0 /* UIView+BlurEffect.swift */,
 				DA24DB07215797EE006E3FE0 /* CameraSession.swift */,
@@ -194,10 +203,37 @@
 		DA24DAFE215797EE006E3FE0 /* CameraView */ = {
 			isa = PBXGroup;
 			children = (
+				DAF7FC90215A9A2A0018116C /* LabelWrapperModel */,
+				DAF7FC8C215A95740018116C /* Views */,
 				DA24DAFF215797EE006E3FE0 /* ViewController.swift */,
+				DAF7FC87215A94EF0018116C /* ViewController+UITableView.swift */,
 				DA24DB00215797EE006E3FE0 /* ResultView.swift */,
 			);
 			path = CameraView;
+			sourceTree = "<group>";
+		};
+		DAF7FC8B215A955F0018116C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DAF7FC89215A95590018116C /* UITableViewCell+Dequeue.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DAF7FC8C215A95740018116C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DAF7FC8D215A95AA0018116C /* DetectedObjectTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DAF7FC90215A9A2A0018116C /* LabelWrapperModel */ = {
+			isa = PBXGroup;
+			children = (
+				DAF7FC91215A9A490018116C /* ModelLabelWrapper.swift */,
+			);
+			path = LabelWrapperModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,10 +371,14 @@
 				DA24DAF1215797C7006E3FE0 /* ObjectDetectionVisionAnalyzer.swift in Sources */,
 				DA24DB09215797EF006E3FE0 /* ResultView.swift in Sources */,
 				DA24DB08215797EF006E3FE0 /* ViewController.swift in Sources */,
+				DAF7FC92215A9A490018116C /* ModelLabelWrapper.swift in Sources */,
 				DA24DAF0215797C7006E3FE0 /* ImageAnalyzer.swift in Sources */,
 				DA24DB0D215797EF006E3FE0 /* UIView+BlurEffect.swift in Sources */,
+				DAF7FC8E215A95AA0018116C /* DetectedObjectTableViewCell.swift in Sources */,
 				DA24DAB42157977E006E3FE0 /* AppDelegate.swift in Sources */,
 				DA24DAE2215797A4006E3FE0 /* Config.swift in Sources */,
+				DAF7FC8A215A95590018116C /* UITableViewCell+Dequeue.swift in Sources */,
+				DAF7FC88215A94EF0018116C /* ViewController+UITableView.swift in Sources */,
 				DA24DAEF215797C7006E3FE0 /* KeywordResultIndicatorDatasource.swift in Sources */,
 				DA24DAE4215797B5006E3FE0 /* MyModel.mlmodel in Sources */,
 				DA24DAF2215797C7006E3FE0 /* DetectionResult.swift in Sources */,

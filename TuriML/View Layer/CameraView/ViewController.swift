@@ -15,19 +15,25 @@ enum ExecutionMode {
 
 class ViewController: UIViewController {
     
+    var detectedObjects:[DetectionResult] = []
+    
     private var analyzer: ImageAnalyzer?
     private lazy var resultIndicatorDataSource = KeywordResultIndicatorDatasource()
     
     @IBOutlet weak var previewContainer: UIView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var resultView: ResultView!
     var currentResults:[DetectionResult]? {
         didSet {
             drawLayer.setNeedsDisplay()
-            guard let results = currentResults else {
-                resultView.text = nil
-                return
+            if (Date().timeIntervalSinceReferenceDate - lastDisplayTimestamp > Config.resultDisplayFreezeTime) {
+                self.lastDisplayTimestamp = Date().timeIntervalSinceReferenceDate
+                guard let results = currentResults else {
+                    resultView.text = nil
+                    return
+                }
+                resultView.text = string(fromResults: results)
             }
-            resultView.text = string(fromResults: results)
         }
     }
     var imageYOffset: CGFloat?
@@ -101,7 +107,15 @@ class ViewController: UIViewController {
         }
         analyzer?.analyze(pixelBuffer: pixelBuffer, callback: { result in
             DispatchQueue.main.async {
-                self.lastDisplayTimestamp = Date().timeIntervalSinceReferenceDate
+                result?.forEach({ (result) in
+                    if result.match > 0.7,
+                        !self.detectedObjects.containsTitle(ofOtherResult: result) {
+                        let lastRowIndex = self.detectedObjects.count
+                        self.detectedObjects.append(result)
+                        self.tableView.insertRows(at: [IndexPath(row: lastRowIndex, section: 0)], with: .automatic)
+                        return
+                    }
+                })
                 self.currentResults = result
             }
         })
@@ -131,9 +145,7 @@ extension ViewController: CameraSessionDelegate {
     }
     
     func captured(pixelBuffer: CVPixelBuffer) {
-        if (Date().timeIntervalSinceReferenceDate - lastDisplayTimestamp > Config.resultDisplayFreezeTime) {
-            analyzeAndDisplayResult(pixelBuffer: pixelBuffer)
-        }
+        analyzeAndDisplayResult(pixelBuffer: pixelBuffer)
     }
     
 }

@@ -20,7 +20,7 @@ struct Config {
     static let minimumRecognitionConfidence: Float = 0.2
     static let resultDisplayMaxCount = 3
     static let resultDisplayFreezeTime = 1.05
-    static let showBoundingBox = false
+    static let showBoundingBox = true
     
     static let keywords = ["Dragon", "Dog"]
     

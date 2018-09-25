@@ -13,15 +13,10 @@ class DetectedObjectTableViewCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var icon: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        label.text = nil
+        icon.image = nil
     }
 
 }
